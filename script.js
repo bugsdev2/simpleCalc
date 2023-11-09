@@ -9,6 +9,11 @@ let operator = '';
 
 button.addEventListener('click', calculate);
 
+document.querySelector('body').addEventListener('keyup', calculateOnKeyPress);
+function calculateOnKeyPress(e){
+	if(e.key === 'Enter') calculate();
+}
+
 function calculate(){
 	let number1 = parseFloat(num1.value);
 	let number2 = parseFloat(num2.value);
