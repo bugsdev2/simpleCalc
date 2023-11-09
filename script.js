@@ -21,13 +21,13 @@ function calculate(){
 	let result;
 	switch(operator){
 		case '+':
-			result = number1 + number2;
+			result = Math.round((number1 + number2)*100)/100;
 			break;
 		case '-':
-			result = number1 - number2;
+			result = Math.round((number1 - number2)*100)/100;
 			break;
 		case '×':
-			result = number1 * number2;
+			result = Math.round((number1 * number2)*100)/100;
 			break;
 		case '÷':
 			result = Math.round((number1 / number2)*100)/100;
