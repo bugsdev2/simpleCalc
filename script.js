@@ -9,14 +9,47 @@ let operator = '';
 
 button.addEventListener('click', calculate);
 
-document.querySelector('body').addEventListener('keyup', calculateOnKeyPress);
-function calculateOnKeyPress(e){
-	if(e.key === 'Enter') calculate();
+document.querySelector('body').addEventListener('keydown', keyPress);
+function keyPress(e){
+	let keyClick = e.key;
+	if(keyClick === '+' || keyClick === '-') {
+		operatorContainer.value = e.key;
+	} else if (keyClick === '*') {
+		operatorContainer.value = '×';
+	} else if (keyClick == '/') {
+		e.preventDefault();
+		operatorContainer.value = '÷';
+	} else if (keyClick === 'Enter') {
+		calculate();
+	} else {
+		return;
+	}
+}
+
+let number1;
+let number2;
+
+num1.addEventListener('input', filterNum1)
+function filterNum1(e){
+	let regex = /[\+\-\*\/]/;
+	if(e.data.match(regex)){
+		num1.value = num1.value.slice(0, num1.value.length-1);
+	}  else {
+		number1 = parseFloat(num1.value);
+	}
+}
+
+num2.addEventListener('input', filterNum2)
+function filterNum2(e){
+	let regex = /[\+\-\*\/]/;
+	if(e.data.match(regex)){
+		num2.value = num2.value.slice(0, num2.value.length-1);
+	} else {
+		number2 = parseFloat(num2.value);
+	}
 }
 
 function calculate(){
-	let number1 = parseFloat(num1.value);
-	let number2 = parseFloat(num2.value);
 	let operator = operatorContainer.value;
 	let result;
 	switch(operator){
